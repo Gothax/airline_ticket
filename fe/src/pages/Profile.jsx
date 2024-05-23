@@ -29,7 +29,7 @@ const Profile = () => {
 
   const handleRefund = async (ticketId) => {
     try {
-      await axiosInstance.post(`/tickets/${ticketId}/refund`, null, {
+      await axiosInstance.post(`/tickets/${ticketId}/refund/`, null, {
         headers: {
           Authorization: `Bearer ${authState.token}`,
         },
@@ -44,17 +44,17 @@ const Profile = () => {
     }
   };
 
-  const uid = authState.user;
+  const uid = authState.user.id;
 
   const handleDeleteAccount = async () => {
     try {
-      const response = await axiosInstance.delete(`/delete/${uid}`, {
+      const response = await axiosInstance.delete(`/delete/${uid}/`, {
         headers: {
           Authorization: `Bearer ${authState.token}`,
         },
       });
 
-      if (response.status === 204) {
+      if (response.status === 200) {
         toast.success('회원탈퇴가 완료되었습니다.');
         setTimeout(() => {
           logout();

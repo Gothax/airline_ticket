@@ -43,9 +43,15 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'account',
+    'flights',
+    'tickets',
 ]
 
 AUTH_USER_MODEL = 'account.User'
+
+CORS_ALLOW_ALL_ORIGINS = True  
+CORS_TRUSTED_ORIGINS = ['*']
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
