@@ -44,3 +44,15 @@ def delete_user(request, pk):
     return JsonResponse({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['PUT', 'POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+def edit_password(request):
+    old_password = request.data.get('oldPassword')
+    new_password = request.data.get('newPassword')
+    user = request.user
+    if user.check_password(old_password):
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({"message": "비밀번호가 변경되었습니다."}, status=status.HTTP_200_OK)
+    return JsonResponse({"error": "비밀번호 변경에 실패하였습니다."}, status=status.HTTP_400_BAD_REQUEST)

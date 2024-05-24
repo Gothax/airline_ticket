@@ -1,10 +1,6 @@
 from rest_framework import serializers
 from .models import Flight, Airport
 
-class AirportSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Airport
-        fields = ('id', 'name', 'city_code', 'country')
 
 class FlightSerializer(serializers.ModelSerializer):
     departure = serializers.StringRelatedField(source='departure_country', read_only=True)

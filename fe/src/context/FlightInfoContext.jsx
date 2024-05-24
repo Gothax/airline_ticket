@@ -88,7 +88,7 @@ export const FlightInfoProvider = ({ children }) => {
           `purchaseTicket called with flightId: ${flightId}, userId: ${userId}`
         );
         const response = await axiosInstance.post(
-          `/purchase/${flightId}`,
+          `/purchase/${flightId}/`,
           { flightId, userId },
           {
             headers: {
