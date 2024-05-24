@@ -1,11 +1,10 @@
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import permission_classes
 
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
 from .models import Flight
 from .serializers import FlightSerializer
 
@@ -26,7 +25,6 @@ def flights(request):
         "currentPage": paginator.page.number,
         "flights": serializer.data,
     }
-    
-    return paginator.get_paginated_response(response_data)
+    return JsonResponse(response_data)
 
 
