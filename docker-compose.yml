@@ -5,6 +5,8 @@ services:
     build:
       context: ./be
     command: gunicorn config.wsgi --bind 0.0.0.0:8000
+    ports:
+      - 8000:8000
 
   fe:
     build:
